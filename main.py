@@ -9,9 +9,6 @@ ALPACA_API_SECRET_KEY = os.path.expandvars('$ALPACA_API_SECRET_KEY')
 ALPACA_API_BASE_URL = "https://paper-api.alpaca.markets"
 ALPHA_VANTAGE_KEY = os.path.expandvars('$ALPHA_VANTAGE_KEY')
 
-print(ALPACA_API_KEY)
-print(ALPACA_API_SECRET_KEY)
-
 # connect to alpaca
 alpaca = tradeapi.REST(ALPACA_API_KEY, ALPACA_API_SECRET_KEY, ALPACA_API_BASE_URL, api_version='v2')
 account = alpaca.get_account()
