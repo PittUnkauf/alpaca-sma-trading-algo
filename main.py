@@ -2,7 +2,6 @@ import alpaca_trade_api as tradeapi
 from alpha_vantage.timeseries import TimeSeries
 from alpha_vantage.techindicators import TechIndicators
 import time, os
-from config import *
 
 # initiate keys
 ALPACA_API_KEY = os.path.expandvars('$ALPACA_API_KEY')
