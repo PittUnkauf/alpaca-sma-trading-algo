@@ -27,8 +27,14 @@ while(True):
     # buy signal, price breaks through SMA from below
     if price > current_sma and price < last_sma:
         alpaca.submit_order('IBM', 1, 'buy', 'market', 'day')
+        print("buy")
     # sell signal, price breaks through SMA from above
     elif price < current_sma and price > last_sma:
         alpaca.submit_order('IBM', 1, 'sell', 'market', 'day')
+        print("sell")
+    else:
+        print("no signal")
+        
+    print("----")
 
     time.sleep(60)
