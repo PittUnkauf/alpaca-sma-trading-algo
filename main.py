@@ -25,14 +25,16 @@ while(True):
     price = ts.get_intraday(symbol='IBM', interval='1min')[0].tail(2)['4. close']
     current_price = price[1]
     last_price = price[0]
+    
+    position = int(alpaca.get_position('IBM').qty)
 
     # buy signal, price breaks through SMA from below
-    if current_price > current_sma and last_price < last_sma:
-        alpaca.submit_order('IBM', 1, 'buy', 'market', 'day')
+    if current_price > current_sma and last_price < last_sma and position == 0:
+        alpaca.submit_order('IBM', 100, 'buy', 'market', 'day')
         print("buy")
     # sell signal, price breaks through SMA from above
-    elif current_price < current_sma and last_price > last_sma:
-        alpaca.submit_order('IBM', 1, 'sell', 'market', 'day')
+    elif current_price < current_sma and last_price > last_sma and position != 0:
+        alpaca.submit_order('IBM', 100, 'sell', 'market', 'day')
         print("sell")
     else:
         print("no signal")
