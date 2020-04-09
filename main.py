@@ -21,12 +21,15 @@ while(True):
     sma = ti.get_sma(symbol='IBM', interval='1min', time_period=30)[0].tail(2)['SMA']
     current_sma = sma[1]
     last_sma = sma[0]
-    
+
     price = ts.get_intraday(symbol='IBM', interval='1min')[0].tail(2)['4. close']
     current_price = price[1]
     last_price = price[0]
-    
-    position = int(alpaca.get_position('IBM').qty)
+
+    try:
+        position = int(alpaca.get_position('IBM').qty)
+    except:
+        position = 0
 
     # buy signal, price breaks through SMA from below
     if current_price > current_sma and last_price < last_sma and position == 0:
